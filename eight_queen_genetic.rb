@@ -26,15 +26,9 @@ class EightQueenGenetic
   end
 
   def column_conflicts(individual)
-    repeated_columns = Hash.new(0)
-
-    individual.each do |column|
-      repeated_columns.store(column, repeated_columns[column]+1)
+    individual.each_with_object(0) do |gene, cost|
+      cost += individual.count(gene) - 1
     end
-
-    repeated_columns.map do |key, value|
-      value > 1 ? conflicts(value) : 0
-    end.reduce(:+)
   end
 
   def conflicts(value)
@@ -52,7 +46,7 @@ class EightQueenGenetic
         end
       end
     end
-    conflicts / 2
+    conflicts
   end
 
   def crossover(father, mother)
