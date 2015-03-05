@@ -1,5 +1,5 @@
 class EightQueenGenetic
-  attr_reader :population, :population_size
+  attr_reader :population, :population_size, :mutation_rate
 
   def initialize(mutation_rate, crossover_rate, population_size)
     @mutation_rate, @crossover_rate, @population_size = mutation_rate, crossover_rate, population_size
@@ -61,5 +61,20 @@ class EightQueenGenetic
     children << father_leftmost + mother_rightmost
     children << mother_leftmost + father_rightmost
     children
+  end
+
+  def mutation(individual)
+    if rand < mutation_rate
+      first_pos = rand(0..7)
+      last_pos = rand(0..7)
+      temp = individual[first_pos]
+      individual[first_pos] = individual[last_pos]
+      individual[last_pos] = temp
+      individual
+    end
+  end
+
+  def sort_population
+    population.sort { |x, y| fitness(x) <=> fitness(y) }
   end
 end
