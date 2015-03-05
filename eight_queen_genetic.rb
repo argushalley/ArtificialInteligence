@@ -54,12 +54,12 @@ class EightQueenGenetic
   def crossover(father, mother)
     children = []
     mid = (father.length / 2) - 1
-    f1 = father[0..mid]
-    f2 = father[mid+1..-1]
-    m1 = mother[0..mid]
-    m2 = mother[mid+1..-1]
-    children << f1 + m2
-    children << m1 + f2
+    father_leftmost = father[0..mid]
+    father_rightmost = father[mid+1..-1]
+    mother_leftmost = mother[0..mid]
+    mother_rightmost = mother[mid+1..-1]
+    children << father_leftmost + mother_rightmost
+    children << mother_leftmost + father_rightmost
     children
   end
 end
