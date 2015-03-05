@@ -1,5 +1,5 @@
 class EightQueenGenetic
-  attr_reader :population
+  attr_reader :population, :population_size
 
   def initialize(mutation_rate, crossover_rate, population_size)
     @mutation_rate, @crossover_rate, @population_size = mutation_rate, crossover_rate, population_size
@@ -12,7 +12,7 @@ class EightQueenGenetic
 
   def generate_initial_population
     population = []
-    while population.size < @generation_size do
+    while population.size < population_size do
       individual = generate_individual
       unless population.include?(individual)
         population << individual
