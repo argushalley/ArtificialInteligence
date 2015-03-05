@@ -33,8 +33,12 @@ class EightQueenGenetic
     end
 
     repeated_columns.map do |key, value|
-      value > 1 ? value : 0
-    end.compact.reduce(:+)
+      value > 1 ? conflicts(value) : 0
+    end.reduce(:+)
+  end
+
+  def conflicts(value)
+    (1..value-1).to_a.reduce(:+)
   end
 
   def diagonal_conflicts(individual)
