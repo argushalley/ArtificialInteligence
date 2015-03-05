@@ -1,8 +1,8 @@
 class EightQueenGenetic
   attr_reader :population
 
-  def initialize(mutation_rate, crossover_rate, generation_size)
-    @mutation_rate, @crossover_rate, @generation_size = mutation_rate, crossover_rate, generation_size
+  def initialize(mutation_rate, crossover_rate, population_size)
+    @mutation_rate, @crossover_rate, @population_size = mutation_rate, crossover_rate, population_size
     @population = generate_initial_population
   end
 
